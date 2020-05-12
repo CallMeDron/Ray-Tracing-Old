@@ -4,6 +4,6 @@ up 0 10 10
 distance 40
 limit 200
 alpha 90
-width 300
-height 300
+width 200
+height 200
 light -100 0 100
