@@ -138,10 +138,10 @@ int RayTracing(vector<double> settings, vector<Figure*> figures)
 
 	std::cout << endl << "Wait a minute..." << endl;
 
-#pragma omp parallel for
+#pragma omp parallel for num_threads(3) private(color,arr)
 	for (int x = 0; x < width; x++)
 	{
-#pragma omp parallel for private(color,arr)
+//#pragma omp parallel for private(color,arr)
 		for (int y = 0; y < height; y++)
 		{
 			arr = GetColor(x, y, settings, figures);
