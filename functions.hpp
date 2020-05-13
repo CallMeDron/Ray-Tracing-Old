@@ -4,6 +4,7 @@
 #include <map>
 #include "CImg.h"
 #include <cmath>
+#include <chrono>
 using namespace std;
 
 vector<double> GetSettings();
