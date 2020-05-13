@@ -136,12 +136,13 @@ int RayTracing(vector<double> settings, vector<Figure*> figures)
 	unsigned char color[3];
 	vector<int> arr;
 
-	std::cout << endl << "Wait a minute..." << endl;
+	std::cout << endl << "Wait a minute..." << endl << endl;
+	
+	auto start = chrono::system_clock::now();
 
-#pragma omp parallel for num_threads(3) private(color,arr)
+#pragma omp parallel for private(color,arr)
 	for (int x = 0; x < width; x++)
 	{
-//#pragma omp parallel for private(color,arr)
 		for (int y = 0; y < height; y++)
 		{
 			arr = GetColor(x, y, settings, figures);
@@ -151,6 +152,11 @@ int RayTracing(vector<double> settings, vector<Figure*> figures)
 			img.draw_point(x, y, color);
 		}
 	}
+	
+	auto end = chrono::system_clock::now();
+	int elapsed_ms = static_cast<int>(chrono::duration_cast<chrono::milliseconds>(end - start).count());
+	cout << "Main cycle time is " << elapsed_ms << " ms" << endl;
+	
 	//img.display(); // MOZHNO VKLUCHIT' PO ZHELANIU
 	img.save("test.bmp");
 
